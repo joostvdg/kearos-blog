@@ -1,4 +1,5 @@
 # kearos-blog
+[![Build Status](https://travis-ci.org/joostvdg/kearos-blog.svg?branch=master)](https://travis-ci.org/joostvdg/kearos-blog)
 
 ## To build
 
