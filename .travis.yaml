@@ -1,0 +1,8 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+- docker pull caladreas/mkdocs-docker-build-container
+- docker run -d -v ${TRAVIS_BUILD_DIR}:/usr/src/app caladreas/mkdocs-docker-build-container /bin/sh -c "mkdocs build"
