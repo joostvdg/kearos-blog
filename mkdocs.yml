@@ -1,2 +1,7 @@
 site_name: Kearos
 theme: slate
+
+pages:
+- Home: index.md
+- About Site: kearos.md
+- About Me: moi.md
