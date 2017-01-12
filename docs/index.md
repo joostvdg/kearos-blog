@@ -9,4 +9,6 @@ The Travis CI will automatically upload this to the S3 bucket that will then hos
 
 Read more [here](kearos.html).
 
+Demo #1.
+
 [![Build Status](https://travis-ci.org/joostvdg/kearos-blog.svg?branch=master)](https://travis-ci.org/joostvdg/kearos-blog)
