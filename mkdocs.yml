@@ -1,6 +1,6 @@
 # Meta
 site_name: Kearos
-ite_author: 'Joost van der Griendt'
+site_author: 'Joost van der Griendt'
 site_url: 'https://joostvdg.github.io/'
 
 # Repository
@@ -12,7 +12,11 @@ copyright: 'Copyright &copy; 2017 Joost van der Griendt'
 
 pages:
 - Home: index.md
-- About Site: kearos.md
+- About Site:
+    - AWS S3: aws-travis.md
+    - GitHub Pages: github-pages.md
+- Jenkins:
+    - Pipeline Input: jenkins/jenkins-pipeline-input-step.md
 - About Me: moi.md
 
 # Theme
