@@ -1,0 +1,69 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "Welcome to Kearos\n\n\nKearos is the blog of Joost van der Griendt.\n\n\nThis is a demo with AWS, nothing much at the moment.\n\n\nBuild with Docker \n Travis CI\n\n\nThis is build with a docker build container; such as Jenkins and GitLab CI are now advocating.\nThe Travis CI will automatically upload this to the S3 bucket that will then host it as a static website!\n\n\nRead more \nhere\n.\n\n\nDemo #2", 
+            "title": "Home"
+        }, 
+        {
+            "location": "/#welcome-to-kearos", 
+            "text": "Kearos is the blog of Joost van der Griendt.  This is a demo with AWS, nothing much at the moment.", 
+            "title": "Welcome to Kearos"
+        }, 
+        {
+            "location": "/#build-with-docker-travis-ci", 
+            "text": "This is build with a docker build container; such as Jenkins and GitLab CI are now advocating.\nThe Travis CI will automatically upload this to the S3 bucket that will then host it as a static website!  Read more  here .  Demo #2", 
+            "title": "Build with Docker &amp; Travis CI"
+        }, 
+        {
+            "location": "/kearos/", 
+            "text": "Kearos\n\n\nThis is build with a docker build container; such as Jenkins and GitLab CI are now advocating.\nThe Travis CI will automatically upload this to the S3 bucket that will then host it as a static website!\n\n\nStatic Website\n\n\nFor some documentation and tutorials, a static website is sufficient.\nNo need to increase the complexity or increase security risks but having a dynamic website.\n\n\nAnother bonus is that you can make use of tools that allow you to write documents in a nice format, without having to deal with the markup.\nFor example, this site uses MKDocs.\n\n\nMKDocs\n\n\nThis website uses \nMKDocs\n and \nMKDocs-Bootswatch\n (for the theme).\nThis allows me to write the documentation and tutorials in simple Markdown.\nMKDocs will generate a static website with styling and everything required from those markdown files and a single configuration file.\n\n\nDocker build container\n\n\nTo be able to utilize MKDocs some requirements have to be met.\nMKDocs is a python tool that has other python dependencies.\nI want to make sure that it always builds in the same way, no matter where I build the website (locally, Jenkins, Travis).\nThis gives rise to a need for a deterministic environment that can run virtually anywhere; Docker!\n\n\nI've create a \nDocker Build Container for MKDocs\n that is available in \nDockerhub\n.\nThis will allow anyone with access to a docker daemon and the dockerhub to build this website withouth any other requirements.\n\n\nTravis CI\n\n\nIn order to execute the build and upload the result to a hosting environment, we need a build server.\nThere are many options available online, including many free ones.\nI've opted for Travis CI simply because I saw it met my requirements: free for opensource, support for \ndocker build containers\n, pipeline as code.\n\n\nThe configuration for Travis is very very simple:\n\n\nsudo\n:\n \nrequired\n\n\nlanguage\n:\n \npython\n\n\npython\n:\n\n\n-\n \n2.7\n\n\nservices\n:\n\n\n-\n \ndocker\n\n\nbefore_install\n:\n\n\n-\n \ndocker pull caladreas/mkdocs-docker-build-container\n\n\n-\n \ndocker run -d --name buildcont -v ${TRAVIS_BUILD_DIR}:/usr/src/app caladreas/mkdocs-docker-build-container\n\n  \n/bin/sh -c \nmkdocs build\n\n\n-\n \ndocker logs buildcont\n\n\nscript\n:\n \npytest -h\n\n\n\ndeploy\n:\n\n  \nprovider\n:\n \ns3\n\n  \n...\n\n  \nlocal-dir\n:\n \nsite\n\n  \nacl\n:\n \npublic_read\n\n  \non\n:\n\n    \nrepo\n:\n \njoostvdg/kearos-blog\n\n\n\n\n\n\nAWS (Amazon)\n\n\nAmazon Webservices allows a great many things for free.\nOne of which is S3 (Simple Storage Service), which allows you to host buckets (file folders).\nThese buckets also have the very nice option of allowing you let it host a static website.\nWhich is exactly what we needed to host this.\n\n\nRequirements\n\n\n\n\nadd the website files to the bucket\n\n\nthe bucket has \"host static website\" enabled\n\n\nmake sure the files have public read access (see travis ci documentation)", 
+            "title": "About Site"
+        }, 
+        {
+            "location": "/kearos/#kearos", 
+            "text": "This is build with a docker build container; such as Jenkins and GitLab CI are now advocating.\nThe Travis CI will automatically upload this to the S3 bucket that will then host it as a static website!", 
+            "title": "Kearos"
+        }, 
+        {
+            "location": "/kearos/#static-website", 
+            "text": "For some documentation and tutorials, a static website is sufficient.\nNo need to increase the complexity or increase security risks but having a dynamic website.  Another bonus is that you can make use of tools that allow you to write documents in a nice format, without having to deal with the markup.\nFor example, this site uses MKDocs.", 
+            "title": "Static Website"
+        }, 
+        {
+            "location": "/kearos/#mkdocs", 
+            "text": "This website uses  MKDocs  and  MKDocs-Bootswatch  (for the theme).\nThis allows me to write the documentation and tutorials in simple Markdown.\nMKDocs will generate a static website with styling and everything required from those markdown files and a single configuration file.", 
+            "title": "MKDocs"
+        }, 
+        {
+            "location": "/kearos/#docker-build-container", 
+            "text": "To be able to utilize MKDocs some requirements have to be met.\nMKDocs is a python tool that has other python dependencies.\nI want to make sure that it always builds in the same way, no matter where I build the website (locally, Jenkins, Travis).\nThis gives rise to a need for a deterministic environment that can run virtually anywhere; Docker!  I've create a  Docker Build Container for MKDocs  that is available in  Dockerhub .\nThis will allow anyone with access to a docker daemon and the dockerhub to build this website withouth any other requirements.", 
+            "title": "Docker build container"
+        }, 
+        {
+            "location": "/kearos/#travis-ci", 
+            "text": "In order to execute the build and upload the result to a hosting environment, we need a build server.\nThere are many options available online, including many free ones.\nI've opted for Travis CI simply because I saw it met my requirements: free for opensource, support for  docker build containers , pipeline as code.  The configuration for Travis is very very simple:  sudo :   required  language :   python  python :  -   2.7  services :  -   docker  before_install :  -   docker pull caladreas/mkdocs-docker-build-container  -   docker run -d --name buildcont -v ${TRAVIS_BUILD_DIR}:/usr/src/app caladreas/mkdocs-docker-build-container \n   /bin/sh -c  mkdocs build  -   docker logs buildcont  script :   pytest -h  deploy : \n   provider :   s3 \n   ... \n   local-dir :   site \n   acl :   public_read \n   on : \n     repo :   joostvdg/kearos-blog", 
+            "title": "Travis CI"
+        }, 
+        {
+            "location": "/kearos/#aws-amazon", 
+            "text": "Amazon Webservices allows a great many things for free.\nOne of which is S3 (Simple Storage Service), which allows you to host buckets (file folders).\nThese buckets also have the very nice option of allowing you let it host a static website.\nWhich is exactly what we needed to host this.", 
+            "title": "AWS (Amazon)"
+        }, 
+        {
+            "location": "/kearos/#requirements", 
+            "text": "add the website files to the bucket  the bucket has \"host static website\" enabled  make sure the files have public read access (see travis ci documentation)", 
+            "title": "Requirements"
+        }, 
+        {
+            "location": "/moi/", 
+            "text": "Me\n\n\nHi, I'm Joost van der Griendt.\n\n\nFor now, just checkout my \nLinkedIn profile\n or my \nGitHub\n, thanks.", 
+            "title": "About Me"
+        }, 
+        {
+            "location": "/moi/#me", 
+            "text": "Hi, I'm Joost van der Griendt.  For now, just checkout my  LinkedIn profile  or my  GitHub , thanks.", 
+            "title": "Me"
+        }
+    ]
+}
